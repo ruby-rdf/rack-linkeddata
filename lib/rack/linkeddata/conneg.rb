@@ -135,7 +135,7 @@ module Rack; module LinkedData
     # @return [Array(Integer, Hash, #each)]
     def http_error(code, message = nil, headers = {})
       message = http_status(code) + (message.nil? ? "\n" : " (#{message})\n")
-      [code, {'Content-Type' => 'text/plain; charset=utf-8'}.merge(headers), message]
+      [code, {'Content-Type' => 'text/plain; charset=utf-8'}.merge(headers), [message]]
     end
 
     ##
