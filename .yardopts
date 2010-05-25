@@ -1,0 +1,11 @@
+--title "Rack::LinkedData - Linked Data Content Negotiation for Rack Applications"
+--output-dir doc/yard
+--protected
+--no-private
+--hide-void-return
+--markup markdown
+--readme README.md
+-
+AUTHORS
+UNLICENSE
+VERSION
