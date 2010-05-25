@@ -1,0 +1,89 @@
+Linked Data Content Negotiation for Rack Applications
+=====================================================
+
+This is [Rack][] middleware that provides [Linked Data][] content
+negotiation for Rack applications. You can use `Rack::LinkedData` with any
+Ruby web framework based on Rack, including with Ruby on Rails 3.0 and with
+Sinatra.
+
+* <http://github.com/datagraph/rack-linkeddata>
+
+Features
+--------
+
+* Compatible with any Rack application and any Rack-based framework.
+
+Examples
+--------
+
+### Adding Linked Data content negotiation to a Rack application
+
+    #!/usr/bin/env rackup
+    require 'rack/linkeddata'
+    
+    rdf = RDF::Graph.new do
+      self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]  
+    end
+    
+    use Rack::LinkedData::ContentNegotiation
+    run lambda { |env| [200, {}, rdf] }
+
+### Testing a Rackup file using a local Rack server
+
+    $ rackup doc/examples/hello.ru
+    
+    $ curl -iH "Accept: text/plain" http://localhost:9292/hello
+    $ curl -iH "Accept: text/turtle" http://localhost:9292/hello
+    $ curl -iH "Accept: application/rdf+xml" http://localhost:9292/hello
+    $ curl -iH "Accept: application/json" http://localhost:9292/hello
+    $ curl -iH "Accept: application/trix" http://localhost:9292/hello
+    $ curl -iH "Accept: */*" http://localhost:9292/hello
+
+Documentation
+-------------
+
+<http://datagraph.rubyforge.org/rack-linkeddata/>
+
+* {Rack::LinkedData}
+  * {Rack::LinkedData::ContentNegotiation}
+
+Dependencies
+------------
+
+* [Rack](http://rubygems.org/gems/rack) (>= 1.0.0)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.1.10)
+
+Installation
+------------
+
+The recommended installation method is via [RubyGems](http://rubygems.org/).
+To install the latest official release of the gem, do:
+
+    % [sudo] gem install rack-linkeddata
+
+Download
+--------
+
+To get a local working copy of the development repository, do:
+
+    % git clone git://github.com/datagraph/rack-linkeddata.git
+
+Alternatively, you can download the latest development version as a tarball
+as follows:
+
+    % wget http://github.com/datagraph/rack-linkeddata/tarball/master
+
+Authors
+-------
+
+* [Arto Bendiken](mailto:arto.bendiken@gmail.com) - <http://ar.to/>
+
+License
+-------
+
+`Rack::LinkedData` is free and unencumbered public domain software. For more
+information, see <http://unlicense.org/> or the accompanying UNLICENSE file.
+
+[Rack]:           http://rack.rubyforge.org/
+[RDF.rb]:         http://rdf.rubyforge.org/
+[Linked Data]:    http://linkeddata.org/
