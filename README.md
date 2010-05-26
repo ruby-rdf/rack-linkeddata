@@ -18,17 +18,12 @@ Features
 Examples
 --------
 
-### Adding Linked Data content negotiation to a Rack application
+### Adding Linked Data content negotiation to a Rails 3.x application
 
-    #!/usr/bin/env rackup
-    require 'rack/linkeddata'
-    
-    rdf = RDF::Graph.new do
-      self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
+    # config/application.rb
+    class Application < Rails::Application
+      config.middleware.use Rack::LinkedData::ContentNegotiation
     end
-    
-    use Rack::LinkedData::ContentNegotiation
-    run lambda { |env| [200, {}, rdf] }
 
 ### Adding Linked Data content negotiation to a Sinatra application
 
@@ -42,6 +37,18 @@ Examples
         self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
       end
     end
+
+### Adding Linked Data content negotiation to a Rackup application
+
+    #!/usr/bin/env rackup
+    require 'rack/linkeddata'
+    
+    rdf = RDF::Graph.new do
+      self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
+    end
+    
+    use Rack::LinkedData::ContentNegotiation
+    run lambda { |env| [200, {}, rdf] }
 
 ### Defining a default Linked Data content type
 
