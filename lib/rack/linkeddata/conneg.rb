@@ -51,7 +51,12 @@ module Rack; module LinkedData
     # @return [Array(Integer, Hash, #each)]
     def serialize(env, status, headers, body)
       writer, content_type = find_writer(env)
-      writer ? [status, headers.merge('Content-Type' => content_type), [writer.dump(body)]] : not_acceptable
+      if writer
+        headers = headers.merge('Content-Type' => content_type, 'Vary' => 'Accept') # FIXME: don't overwrite existing Vary headers
+        [status, headers, [writer.dump(body)]]
+      else
+        not_acceptable
+      end
     end
 
     ##
