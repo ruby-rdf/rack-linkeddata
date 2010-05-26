@@ -11,6 +11,8 @@ Sinatra.
 Features
 --------
 
+* Implements [HTTP content negotiation][conneg] for RDF content types.
+* Supports all [RDF.rb][]-compatible serialization formats.
 * Compatible with any Rack application and any Rack-based framework.
 
 Examples
@@ -22,13 +24,17 @@ Examples
     require 'rack/linkeddata'
     
     rdf = RDF::Graph.new do
-      self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]  
+      self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
     end
     
     use Rack::LinkedData::ContentNegotiation
     run lambda { |env| [200, {}, rdf] }
 
-### Testing a Rackup file using a local Rack server
+### Defining a default Linked Data content type
+
+    use Rack::LinkedData::ContentNegotiation, :default => "text/turtle"
+
+### Testing Linked Data content negotiation using `rackup` and `curl`
 
     $ rackup doc/examples/hello.ru
     
@@ -38,6 +44,21 @@ Examples
     $ curl -iH "Accept: application/json" http://localhost:9292/hello
     $ curl -iH "Accept: application/trix" http://localhost:9292/hello
     $ curl -iH "Accept: */*" http://localhost:9292/hello
+
+Description
+-----------
+
+`Rack::LinkedData` implements content negotiation for any [Rack][] response
+object that implements the `RDF::Enumerable` mixin. You would typically
+return an instance of `RDF::Graph` or `RDF::Repository` from your Rack
+application, and let the `Rack::LinkedData::ContentNegotiation` middleware
+take care serializing your response into whatever RDF format the HTTP client
+requested and understands.
+
+The middleware works by querying [RDF.rb][] for the MIME content types of
+known RDF serialization formats, so it will work with whatever serialization
+plugins that are currently available for RDF.rb. (At present, this includes
+support for N-Triples, Turtle, RDF/XML, RDF/JSON and TriX.)
 
 Documentation
 -------------
@@ -97,3 +118,4 @@ information, see <http://unlicense.org/> or the accompanying UNLICENSE file.
 [Rack]:           http://rack.rubyforge.org/
 [RDF.rb]:         http://rdf.rubyforge.org/
 [Linked Data]:    http://linkeddata.org/
+[conneg]:         http://en.wikipedia.org/wiki/Content_negotiation
