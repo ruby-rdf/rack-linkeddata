@@ -27,6 +27,7 @@ Examples
 
 ### Adding Linked Data content negotiation to a Sinatra application
 
+    #!/usr/bin/env ruby -rubygems
     require 'sinatra'
     require 'rack/linkeddata'
     
