@@ -73,6 +73,16 @@ as follows:
 
     % wget http://github.com/datagraph/rack-linkeddata/tarball/master
 
+References
+----------
+
+* <http://www.w3.org/DesignIssues/LinkedData.html>
+* <http://linkeddata.org/docs/how-to-publish>
+* <http://linkeddata.org/conneg-303-redirect-code-samples>
+* <http://www.w3.org/TR/cooluris/>
+* <http://www.w3.org/TR/swbp-vocab-pub/>
+* <http://patterns.dataincubator.org/book/publishing-patterns.html>
+
 Authors
 -------
 
