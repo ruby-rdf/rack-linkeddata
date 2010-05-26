@@ -73,13 +73,13 @@ Description
 object that implements the `RDF::Enumerable` mixin. You would typically
 return an instance of `RDF::Graph` or `RDF::Repository` from your Rack
 application, and let the `Rack::LinkedData::ContentNegotiation` middleware
-take care serializing your response into whatever RDF format the HTTP client
-requested and understands.
+take care of serializing your response into whatever RDF format the HTTP
+client requested and understands.
 
-The middleware works by querying [RDF.rb][] for the MIME content types of
-known RDF serialization formats, so it will work with whatever serialization
-plugins that are currently available for RDF.rb. (At present, this includes
-support for N-Triples, Turtle, RDF/XML, RDF/JSON and TriX.)
+The middleware queries [RDF.rb][] for the MIME content types of known RDF
+serialization formats, so it will work with whatever serialization plugins
+that are currently available for RDF.rb. (At present, this includes support
+for N-Triples, Turtle, RDF/XML, RDF/JSON and TriX.)
 
 Documentation
 -------------
