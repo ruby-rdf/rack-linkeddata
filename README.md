@@ -30,6 +30,19 @@ Examples
     use Rack::LinkedData::ContentNegotiation
     run lambda { |env| [200, {}, rdf] }
 
+### Adding Linked Data content negotiation to a Sinatra application
+
+    require 'sinatra'
+    require 'rack/linkeddata'
+    
+    use Rack::LinkedData::ContentNegotiation
+    
+    get '/hello' do
+      RDF::Graph.new do
+        self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
+      end
+    end
+
 ### Defining a default Linked Data content type
 
     use Rack::LinkedData::ContentNegotiation, :default => "text/turtle"
