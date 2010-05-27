@@ -5,6 +5,7 @@ module Rack; module LinkedData
   # @see http://www4.wiwiss.fu-berlin.de/bizer/pub/LinkedDataTutorial/
   class ContentNegotiation
     DEFAULT_CONTENT_TYPE = "text/plain" # N-Triples
+    VARY = {'Vary' => 'Accept'}.freeze
 
     # @return [#call]
     attr_reader :app
@@ -52,7 +53,7 @@ module Rack; module LinkedData
     def serialize(env, status, headers, body)
       writer, content_type = find_writer(env)
       if writer
-        headers = headers.merge('Content-Type' => content_type, 'Vary' => 'Accept') # FIXME: don't overwrite existing Vary headers
+        headers = headers.merge(VARY).merge('Content-Type' => content_type) # FIXME: don't overwrite existing Vary headers
         [status, headers, [writer.dump(body)]]
       else
         not_acceptable
@@ -128,7 +129,7 @@ module Rack; module LinkedData
     # @param  [String, #to_s] message
     # @return [Array(Integer, Hash, #each)]
     def not_acceptable(message = nil)
-      http_error(406, message)
+      http_error(406, message, VARY)
     end
 
     ##
