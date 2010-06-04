@@ -2,11 +2,10 @@ module Rack; module LinkedData
   module VERSION
     MAJOR = 0
     MINOR = 1
-    TINY  = 1
+    TINY  = 2
     EXTRA = nil
 
-    STRING = [MAJOR, MINOR, TINY].join('.')
-    STRING << ".#{EXTRA}" if EXTRA
+    STRING = [MAJOR, MINOR, TINY, EXTRA].compact.join('.')
 
     ##
     # @return [String]
