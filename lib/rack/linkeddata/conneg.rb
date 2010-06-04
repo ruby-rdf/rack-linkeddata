@@ -51,11 +51,15 @@ module Rack; module LinkedData
     # @param  [RDF::Enumerable]        body
     # @return [Array(Integer, Hash, #each)]
     def serialize(env, status, headers, body)
-      writer, content_type = find_writer(env)
-      if writer
-        headers = headers.merge(VARY).merge('Content-Type' => content_type) # FIXME: don't overwrite existing Vary headers
-        [status, headers, [writer.dump(body)]]
-      else
+      begin
+        writer, content_type = find_writer(env)
+        if writer
+          headers = headers.merge(VARY).merge('Content-Type' => content_type) # FIXME: don't overwrite existing Vary headers
+          [status, headers, [writer.dump(body)]]
+        else
+          not_acceptable
+        end
+      rescue RDF::WriterError => e
         not_acceptable
       end
     end
