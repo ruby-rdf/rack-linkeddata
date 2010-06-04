@@ -21,6 +21,8 @@ Examples
 ### Adding Linked Data content negotiation to a Rails 3.x application
 
     # config/application.rb
+    require 'rack/linkeddata'
+    
     class Application < Rails::Application
       config.middleware.use Rack::LinkedData::ContentNegotiation
     end
@@ -34,8 +36,8 @@ Examples
     use Rack::LinkedData::ContentNegotiation
     
     get '/hello' do
-      RDF::Graph.new do
-        self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
+      RDF::Graph.new do |graph|
+        graph << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
       end
     end
 
@@ -44,8 +46,8 @@ Examples
     #!/usr/bin/env rackup
     require 'rack/linkeddata'
     
-    rdf = RDF::Graph.new do
-      self << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
+    rdf = RDF::Graph.new do |graph|
+      graph << [RDF::Node.new, RDF::DC.title, "Hello, world!"]
     end
     
     use Rack::LinkedData::ContentNegotiation
