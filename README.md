@@ -95,7 +95,7 @@ Dependencies
 ------------
 
 * [Rack](http://rubygems.org/gems/rack) (>= 1.0.0)
-* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.1.10)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.2.0)
 
 Installation
 ------------

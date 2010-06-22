@@ -25,12 +25,12 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.test_files         = %w()
   gem.has_rdoc           = false
 
-  gem.required_ruby_version      = '>= 1.8.2'
+  gem.required_ruby_version      = '>= 1.8.1'
   gem.requirements               = []
-  gem.add_development_dependency 'rack-test',  '>= 0.5.3'
+  gem.add_development_dependency 'yard' ,      '>= 0.5.6'
   gem.add_development_dependency 'rspec',      '>= 1.3.0'
-  gem.add_development_dependency 'yard' ,      '>= 0.5.5'
+  gem.add_development_dependency 'rack-test',  '>= 0.5.4'
+  gem.add_runtime_dependency     'linkeddata', '~> 0.2.0'
   gem.add_runtime_dependency     'rack',       '>= 1.0.0'
-  gem.add_runtime_dependency     'linkeddata', '~> 0.1.10'
   gem.post_install_message       = nil
 end
