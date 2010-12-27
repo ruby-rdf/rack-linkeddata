@@ -1,7 +1,7 @@
 module Rack; module LinkedData
   module VERSION
     MAJOR = 0
-    MINOR = 2
+    MINOR = 3
     TINY  = 0
     EXTRA = nil
 
