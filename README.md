@@ -95,7 +95,7 @@ Dependencies
 ------------
 
 * [Rack](http://rubygems.org/gems/rack) (>= 1.0.0)
-* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.2.0)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.3.0)
 
 Installation
 ------------
@@ -112,8 +112,8 @@ To get a local working copy of the development repository, do:
 
     % git clone git://github.com/datagraph/rack-linkeddata.git
 
-Alternatively, you can download the latest development version as a tarball
-as follows:
+Alternatively, download the latest development version as a tarball as
+follows:
 
     % wget http://github.com/datagraph/rack-linkeddata/tarball/master
 
@@ -130,13 +130,13 @@ References
 Authors
 -------
 
-* [Arto Bendiken](mailto:arto.bendiken@gmail.com) - <http://ar.to/>
+* [Arto Bendiken](http://github.com/bendiken) - <http://ar.to/>
 
 License
 -------
 
-`Rack::LinkedData` is free and unencumbered public domain software. For more
-information, see <http://unlicense.org/> or the accompanying UNLICENSE file.
+This is free and unencumbered public domain software. For more information,
+see <http://unlicense.org/> or the accompanying {file:UNLICENSE} file.
 
 [Rack]:           http://rack.rubyforge.org/
 [RDF.rb]:         http://rdf.rubyforge.org/

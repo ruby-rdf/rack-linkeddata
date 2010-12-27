@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
   gem.rubyforge_project  = 'datagraph'
 
-  gem.authors            = ['Datagraph']
+  gem.author             = 'Datagraph'
   gem.email              = 'datagraph@googlegroups.com'
 
   gem.platform           = Gem::Platform::RUBY
@@ -27,10 +27,10 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version      = '>= 1.8.1'
   gem.requirements               = []
-  gem.add_development_dependency 'yard' ,      '>= 0.5.6'
-  gem.add_development_dependency 'rspec',      '>= 1.3.0'
-  gem.add_development_dependency 'rack-test',  '>= 0.5.4'
-  gem.add_runtime_dependency     'linkeddata', '~> 0.2.0'
-  gem.add_runtime_dependency     'rack',       '>= 1.0.0'
+  gem.add_development_dependency 'yard' ,      '>= 0.6.0'
+  gem.add_development_dependency 'rspec',      '>= 2.1.0'
+  gem.add_development_dependency 'rack-test',  '>= 0.5.6'
+  gem.add_runtime_dependency     'linkeddata', '~> 0.3.0'
+  gem.add_runtime_dependency     'rack',       '>= 1.0'
   gem.post_install_message       = nil
 end
