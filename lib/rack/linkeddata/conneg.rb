@@ -32,14 +32,10 @@ module Rack; module LinkedData
     # @see    http://rack.rubyforge.org/doc/SPEC.html
     def call(env)
       response = app.call(env)
-      case env['REQUEST_METHOD'].to_sym
-        when :GET, :HEAD
-          case response[2] # the body
-            when RDF::Enumerable
-              puts "rack: serialize #{response[2]}"
-              serialize(env, *response)
-            else response
-          end
+      case response[2] # the body
+        when RDF::Enumerable
+          puts "rack: serialize #{response[2]}"
+          serialize(env, *response)
         else response
       end
     end
