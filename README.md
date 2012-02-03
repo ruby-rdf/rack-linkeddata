@@ -57,6 +57,13 @@ Examples
 
     use Rack::LinkedData::ContentNegotiation, :default => "text/turtle"
 
+Options are also passed to the writer, which can allow options to be shared among the application
+and different components.
+
+    shared_options = {:default => "text/turtle", :standard_prefixes => true, }
+    use Rack::LinkedData::ContentNegotiation, shared_options
+    run MyApplication, shared_options
+
 ### Testing Linked Data content negotiation using `rackup` and `curl`
 
     $ rackup doc/examples/hello.ru
