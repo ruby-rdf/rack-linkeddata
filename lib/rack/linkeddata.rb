@@ -14,9 +14,9 @@ module Rack
     # @return [void]
     def self.register_mime_types!(options = {})
       if defined?(Rack::Mime::MIME_TYPES)
-        RDF::Format.file_extensions.each do |file_ext, content_type|
+        RDF::Format.file_extensions.each do |file_ext, formats|
           if !Rack::Mime::MIME_TYPES.has_key?(file_ext = ".#{file_ext}") || options[:overwrite]
-            Rack::Mime::MIME_TYPES.merge!(file_ext => content_type.to_s)
+            Rack::Mime::MIME_TYPES.merge!(file_ext => formats.first.content_type.first)
           end
         end
       end

@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'yard' ,      '>= 0.6.0'
   gem.add_development_dependency 'rspec',      '>= 2.1.0'
   gem.add_development_dependency 'rack-test',  '>= 0.5.6'
-  gem.add_runtime_dependency     'linkeddata', '~> 0.3.0'
+  gem.add_runtime_dependency     'linkeddata', '~> 0.3.2'
   gem.add_runtime_dependency     'rack',       '>= 1.0'
   gem.post_install_message       = nil
 end

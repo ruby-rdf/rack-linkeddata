@@ -57,6 +57,13 @@ Examples
 
     use Rack::LinkedData::ContentNegotiation, :default => "text/turtle"
 
+Options are also passed to the writer, which can allow options to be shared among the application
+and different components.
+
+    shared_options = {:default => "text/turtle", :standard_prefixes => true, }
+    use Rack::LinkedData::ContentNegotiation, shared_options
+    run MyApplication, shared_options
+
 ### Testing Linked Data content negotiation using `rackup` and `curl`
 
     $ rackup doc/examples/hello.ru
@@ -81,7 +88,7 @@ client requested and understands.
 The middleware queries [RDF.rb][] for the MIME content types of known RDF
 serialization formats, so it will work with whatever serialization plugins
 that are currently available for RDF.rb. (At present, this includes support
-for N-Triples, Turtle, RDF/XML, RDF/JSON and TriX.)
+for N-Triples, N-Quads, Turtle, RDF/XML, RDF/JSON, JSON-LD, RDFa, TriG and TriX.)
 
 Documentation
 -------------
@@ -95,7 +102,7 @@ Dependencies
 ------------
 
 * [Rack](http://rubygems.org/gems/rack) (>= 1.0.0)
-* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.3.0)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.3.2)
 
 Installation
 ------------
