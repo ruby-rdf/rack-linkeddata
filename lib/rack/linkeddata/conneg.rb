@@ -2,6 +2,20 @@ module Rack; module LinkedData
   ##
   # Rack middleware for Linked Data content negotiation.
   #
+  # Uses HTTP Content Negotiation to find an appropriate RDF
+  # format to serialize any result with a body being `RDF::Enumerable`.
+  #
+  # Override content negotiation by setting the :format option to
+  # {#initialize}.
+  #
+  # Add a :default option to set a content type to use when nothing else
+  # is found.
+  #
+  # @example
+  #     use Rack::LinkedData::ContentNegotation, :format => :ttl
+  #     use Rack::LinkedData::ContentNegotiation, :format => RDF::NTriples::Format
+  #     use Rack::LinkedData::ContentNegotiation, :default => 'application/rdf+xml'
+  #
   # @see http://www4.wiwiss.fu-berlin.de/bizer/pub/LinkedDataTutorial/
   class ContentNegotiation
     DEFAULT_CONTENT_TYPE = "text/plain" # N-Triples
@@ -17,10 +31,10 @@ module Rack; module LinkedData
     # @param  [#call]                  app
     # @param  [Hash{Symbol => Object}] options
     #   Other options passed to writer.
-    # @option options [String] :default (DEFAULT_CONTENT_TYPE)
-    # @option options [#to_sym] :format Specific writer format to use
+    # @option options [String] :default (DEFAULT_CONTENT_TYPE) Specific content type
+    # @option options [RDF::Format, #to_sym] :format Specific RDF writer format to use
     def initialize(app, options = {})
-      @app, @options = app, options.to_hash.dup
+      @app, @options = app, options
       @options[:default] = (@options[:default] || DEFAULT_CONTENT_TYPE).to_s
     end
 
@@ -34,7 +48,6 @@ module Rack; module LinkedData
       response = app.call(env)
       case response[2] # the body
         when RDF::Enumerable
-          puts "rack: serialize #{response[2]}"
           serialize(env, *response)
         else response
       end
@@ -45,10 +58,6 @@ module Rack; module LinkedData
     # response using HTTP content negotiation rules or a specified Content-Type.
     #
     # @param  [Hash{String => String}] env
-    #   If options contain a `:format` key, the value
-    #   is a symbol or a subtype of RDF::Format and is used to find the writer directly.
-    #
-    #   Otherwise, env is inspected for HTTP_
     # @param  [Integer]                status
     # @param  [Hash{String => Object}] headers
     # @param  [RDF::Enumerable]        body
@@ -71,25 +80,18 @@ module Rack; module LinkedData
     # Returns an `RDF::Writer` class for the given `env`.
     #
     # If options contain a `:format` key, it identifies the specific format to use;
-    # otherwise, if a Content-Type header is defined, use it to find the writer;
     # otherwise, if the environment has an HTTP_ACCEPT header, use it to find a writer;
     # otherwise, use the default content type
     #
     # @param  [Hash{String => String}] env
-    #   If the options contains a `:format` key, the value
-    #   is a symbol or a subtype of RDF::Format and is used to find the writer directly.
-    #
-    #   Otherwise, env is inspected for HTTP_
     # @param  [Hash{String => Object}] headers
     # @return [Array(Class, String)]
     # @see    http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
     def find_writer(env, headers)
       if @options[:format]
-        format = RDF::Format.for(@options[:format].to_sym)
+        format = @options[:format]
+        format = RDF::Format.for(format.to_sym) unless format.is_a?(RDF::Format)
         return [format.content_types.first, format.writer] if format && format.writer
-      elsif headers.has_key?('Content-Type')
-        writer, content_type = find_writer_for_content_type(headers['Content-Type'].split(';').first)
-        return [writer, content_type] if writer
       elsif env.has_key?('HTTP_ACCEPT')
         content_types = parse_accept_header(env['HTTP_ACCEPT'])
         content_types.each do |content_type|
