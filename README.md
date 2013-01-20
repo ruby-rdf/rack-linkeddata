@@ -117,12 +117,12 @@ Download
 
 To get a local working copy of the development repository, do:
 
-    % git clone git://github.com/datagraph/rack-linkeddata.git
+    % git clone git://github.com/ruby-rdf/rack-linkeddata.git
 
 Alternatively, download the latest development version as a tarball as
 follows:
 
-    % wget http://github.com/datagraph/rack-linkeddata/tarball/master
+    % wget http://github.com/ruby-rdf/rack-linkeddata/tarball/master
 
 References
 ----------

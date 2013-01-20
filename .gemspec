@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
   gem.rubyforge_project  = 'datagraph'
 
-  gem.authors            = ['Arto Bendiken', 'Ben Lavender']
+  gem.authors            = ['Arto Bendiken']
   gem.email              = 'public-rdf-ruby@w3.org'
 
   gem.platform           = Gem::Platform::RUBY
