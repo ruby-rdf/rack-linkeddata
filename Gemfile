@@ -17,6 +17,7 @@ group :development do
   gem 'rdf-turtle',     :git => "git://github.com/ruby-rdf/rdf-turtle.git"
   gem 'rdf-xsd',        :git => "git://github.com/ruby-rdf/rdf-xsd.git"
   gem 'json-ld',        :git => "git://github.com/gkellogg/json-ld.git"
+  gem 'redcarpet'
   gem "wirble"
   gem "debugger"
 end

@@ -145,7 +145,7 @@ License
 This is free and unencumbered public domain software. For more information,
 see <http://unlicense.org/> or the accompanying {file:UNLICENSE} file.
 
-[Rack]:           http://rack.rubyforge.org/
-[RDF.rb]:         http://rdf.rubyforge.org/
+[Rack]:           http://rack.github.com/
+[RDF.rb]:         http://ruby-rdf.github.com/rdf/
 [Linked Data]:    http://linkeddata.org/
 [conneg]:         http://en.wikipedia.org/wiki/Content_negotiation
