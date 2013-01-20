@@ -101,8 +101,8 @@ Documentation
 Dependencies
 ------------
 
-* [Rack](http://rubygems.org/gems/rack) (>= 1.0.0)
-* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 0.3.2)
+* [Rack](http://rubygems.org/gems/rack) (>= 1.4.4)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 1.0)
 
 Installation
 ------------

@@ -1,9 +1,7 @@
 module Rack; module LinkedData
   module VERSION
-    MAJOR = 0
-    MINOR = 3
-    TINY  = 0
-    EXTRA = nil
+    VERSION_FILE = ::File.expand_path("../../../../VERSION", __FILE__)
+    MAJOR, MINOR, TINY, EXTRA = ::File.read(VERSION_FILE).chomp.split(".")
 
     STRING = [MAJOR, MINOR, TINY, EXTRA].compact.join('.')
 
