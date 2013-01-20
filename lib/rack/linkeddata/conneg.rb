@@ -46,8 +46,10 @@ module Rack; module LinkedData
     # @see    http://rack.rubyforge.org/doc/SPEC.html
     def call(env)
       response = app.call(env)
-      case response[2] # the body
+      body = response[2].respond_to?(:body) ? response[2].body : response[2]
+      case body
         when RDF::Enumerable
+          response[2] = body  # Put it back in the response, it might have been a proxy
           serialize(env, *response)
         else response
       end
@@ -66,7 +68,8 @@ module Rack; module LinkedData
       begin
         writer, content_type = find_writer(env, headers)
         if writer
-          headers = headers.merge(VARY).merge('Content-Type' => content_type) # FIXME: don't overwrite existing Vary headers
+          # FIXME: don't overwrite existing Vary headers
+          headers = headers.merge(VARY).merge('Content-Type' => content_type)
           [status, headers, [writer.dump(body, nil, @options)]]
         else
           not_acceptable
@@ -90,8 +93,8 @@ module Rack; module LinkedData
     def find_writer(env, headers)
       if @options[:format]
         format = @options[:format]
-        format = RDF::Format.for(format.to_sym) unless format.is_a?(RDF::Format)
-        return [format.content_types.first, format.writer] if format && format.writer
+        writer = RDF::Writer.for(format.to_sym) unless format.is_a?(RDF::Format)
+        return [writer, writer.format.content_type.first] if writer
       elsif env.has_key?('HTTP_ACCEPT')
         content_types = parse_accept_header(env['HTTP_ACCEPT'])
         content_types.each do |content_type|
