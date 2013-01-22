@@ -1,5 +1,4 @@
-Linked Data Content Negotiation for Rack Applications
-=====================================================
+# Linked Data Content Negotiation for Rack Applications [![Build Status](https://travis-ci.org/ruby-rdf/rack-linkeddata.png?branch=master)](http://travis-ci.org/ruby-rdf/rack-linkeddata)
 
 This is [Rack][] middleware that provides [Linked Data][] content
 negotiation for Rack applications. You can use `Rack::LinkedData` with any
@@ -8,15 +7,13 @@ Sinatra.
 
 * <http://github.com/datagraph/rack-linkeddata>
 
-Features
---------
+## Features
 
 * Implements [HTTP content negotiation][conneg] for RDF content types.
 * Supports all [RDF.rb][]-compatible serialization formats.
 * Compatible with any Rack application and any Rack-based framework.
 
-Examples
---------
+## Examples
 
 ### Adding Linked Data content negotiation to a Rails 3.x application
 
@@ -75,8 +72,7 @@ and different components.
     $ curl -iH "Accept: application/trix" http://localhost:9292/hello
     $ curl -iH "Accept: */*" http://localhost:9292/hello
 
-Description
------------
+## Description
 
 `Rack::LinkedData` implements content negotiation for any [Rack][] response
 object that implements the `RDF::Enumerable` mixin. You would typically
@@ -90,30 +86,26 @@ serialization formats, so it will work with whatever serialization plugins
 that are currently available for RDF.rb. (At present, this includes support
 for N-Triples, N-Quads, Turtle, RDF/XML, RDF/JSON, JSON-LD, RDFa, TriG and TriX.)
 
-Documentation
--------------
+##Documentation
 
-<http://datagraph.rubyforge.org/rack-linkeddata/>
+<http://http://rubydoc.info/github/ruby-rdf/rack-linkeddata/>
 
 * {Rack::LinkedData}
   * {Rack::LinkedData::ContentNegotiation}
 
-Dependencies
-------------
+## Dependencies
 
 * [Rack](http://rubygems.org/gems/rack) (>= 1.4.4)
 * [Linked Data](http://rubygems.org/gems/linkeddata) (>= 1.0)
 
-Installation
-------------
+## Installation
 
 The recommended installation method is via [RubyGems](http://rubygems.org/).
 To install the latest official release of the gem, do:
 
     % [sudo] gem install rack-linkeddata
 
-Download
---------
+## Download
 
 To get a local working copy of the development repository, do:
 
@@ -124,8 +116,7 @@ follows:
 
     % wget http://github.com/ruby-rdf/rack-linkeddata/tarball/master
 
-References
-----------
+## References
 
 * <http://www.w3.org/DesignIssues/LinkedData.html>
 * <http://linkeddata.org/docs/how-to-publish>
@@ -134,13 +125,11 @@ References
 * <http://www.w3.org/TR/swbp-vocab-pub/>
 * <http://patterns.dataincubator.org/book/publishing-patterns.html>
 
-Authors
--------
+## Authors
 
 * [Arto Bendiken](http://github.com/bendiken) - <http://ar.to/>
 
-License
--------
+## License
 
 This is free and unencumbered public domain software. For more information,
 see <http://unlicense.org/> or the accompanying {file:UNLICENSE} file.
