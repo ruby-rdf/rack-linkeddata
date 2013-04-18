@@ -7,7 +7,7 @@ Sinatra.
 
 * <http://github.com/datagraph/rack-linkeddata>
 
-[![Gem Version](https://badge.fury.io/rb/rack-linkeddata.png)][gem]
+[![Gem Version](https://badge.fury.io/rb/rack-linkeddata.png)](http://badge.fury.io/rb/rack-linkeddata)
 [![Build Status](https://travis-ci.org/ruby-rdf/rack-linkeddata.png?branch=master)](http://travis-ci.org/ruby-rdf/rack-linkeddata)
 
 ## Features
