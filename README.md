@@ -1,4 +1,4 @@
-# Linked Data Content Negotiation for Rack Applications [![Build Status](https://travis-ci.org/ruby-rdf/rack-linkeddata.png?branch=master)](http://travis-ci.org/ruby-rdf/rack-linkeddata)
+# Linked Data Content Negotiation for Rack Applications
 
 This is [Rack][] middleware that provides [Linked Data][] content
 negotiation for Rack applications. You can use `Rack::LinkedData` with any
@@ -6,6 +6,9 @@ Ruby web framework based on Rack, including with Ruby on Rails 3.0 and with
 Sinatra.
 
 * <http://github.com/datagraph/rack-linkeddata>
+
+[![Gem Version](https://badge.fury.io/rb/rack-linkeddata.png)][gem]
+[![Build Status](https://travis-ci.org/ruby-rdf/rack-linkeddata.png?branch=master)](http://travis-ci.org/ruby-rdf/rack-linkeddata)
 
 ## Features
 
