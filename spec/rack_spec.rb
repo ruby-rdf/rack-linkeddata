@@ -7,7 +7,7 @@ describe Rack::LinkedData do
 
   before(:each) { @options = {}; @headers = {} }
   def app
-    target_app = mock("Target Rack Application", :call => [200, @headers, @results || "A String"])
+    target_app = double("Target Rack Application", :call => [200, @headers, @results || "A String"])
 
     @app ||= Rack::LinkedData::ContentNegotiation.new(target_app, @options)
   end
@@ -15,7 +15,7 @@ describe Rack::LinkedData do
   context "plain test" do
     it "returns text unchanged" do
       get '/'
-      last_response.body.should == 'A String'
+      expect(last_response.body).to eq 'A String'
     end
   end
   
@@ -31,20 +31,20 @@ describe Rack::LinkedData do
           let!(:writer) {RDF::Writer.for(fmt)}
           before(:each) do
             @options[:format] = fmt
-            writer.should_receive(:dump).and_return(fmt.to_s)
+            expect(writer).to receive(:dump).and_return(fmt.to_s)
             get '/'
           end
 
           it "returns serialization" do
-            last_response.body.should == fmt.to_s
+            expect(last_response.body).to eq fmt.to_s
           end
 
           it "sets content type to #{RDF::Format.for(fmt).content_type.first}" do
-            last_response.content_type.should == RDF::Format.for(fmt).content_type.first
+            expect(last_response.content_type).to eq RDF::Format.for(fmt).content_type.first
           end
           
           it "sets content length" do
-            last_response.content_length.should_not == 0
+            expect(last_response.content_length).not_to eq 0
           end
         end
       end
@@ -58,21 +58,21 @@ describe Rack::LinkedData do
         context content_types do
           before(:each) do
             writer = RDF::Writer.for(fmt)
-            writer.should_receive(:dump).
+            expect(writer).to receive(:dump).
               and_return(content_types.split(/,\s+/).first)
               get '/', {}, {"HTTP_ACCEPT" => content_types}
           end
 
           it "returns serialization" do
-            last_response.body.should == content_types.split(/,\s+/).first
+            expect(last_response.body).to eq content_types.split(/,\s+/).first
           end
 
           it "sets content type to #{content_types}" do
-            last_response.content_type.should == content_types
+            expect(last_response.content_type).to eq content_types
           end
           
           it "sets content length" do
-            last_response.content_length.should_not == 0
+            expect(last_response.content_length).not_to eq 0
           end
         end
       end
