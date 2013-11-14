@@ -146,6 +146,7 @@ This repository uses [Git Flow](https://github.com/nvie/gitflow) to mange develo
 ## Authors
 
 * [Arto Bendiken](http://github.com/bendiken) - <http://ar.to/>
+* [Gregg Kellogg](http://github.com/gkellogg) - <http://greggkellogg.net/>
 
 ## License
 
