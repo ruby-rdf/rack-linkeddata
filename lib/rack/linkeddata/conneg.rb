@@ -18,7 +18,7 @@ module Rack; module LinkedData
   #
   # @see http://www4.wiwiss.fu-berlin.de/bizer/pub/LinkedDataTutorial/
   class ContentNegotiation
-    DEFAULT_CONTENT_TYPE = "text/plain" # N-Triples
+    DEFAULT_CONTENT_TYPE = "application/n-triples" # N-Triples
     VARY = {'Vary' => 'Accept'}.freeze
 
     # @return [#call]
@@ -40,11 +40,15 @@ module Rack; module LinkedData
 
     ##
     # Handles a Rack protocol request.
+    # Parses Accept header to find appropriate mime-type and sets content_type accordingly.
+    #
+    # Inserts ordered content types into the environment as `ORDERED_CONTENT_TYPES` if an Accept header is present
     #
     # @param  [Hash{String => String}] env
     # @return [Array(Integer, Hash, #each)]
     # @see    http://rack.rubyforge.org/doc/SPEC.html
     def call(env)
+      env['ORDERED_CONTENT_TYPES'] = parse_accept_header(env['HTTP_ACCEPT']) if env.has_key?('HTTP_ACCEPT')
       response = app.call(env)
       body = response[2].respond_to?(:body) ? response[2].body : response[2]
       case body
@@ -169,7 +173,7 @@ module Rack; module LinkedData
     # @return [Array(Integer, Hash, #each)]
     def http_error(code, message = nil, headers = {})
       message = http_status(code) + (message.nil? ? "\n" : " (#{message})\n")
-      [code, {'Content-Type' => 'text/plain; charset=utf-8'}.merge(headers), [message]]
+      [code, {'Content-Type' => "#{DEFAULT_CONTENT_TYPE}; charset=utf-8"}.merge(headers), [message]]
     end
 
     ##
