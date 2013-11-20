@@ -140,19 +140,15 @@ module Rack; module LinkedData
     # @return [Array<String>]
     # @see    http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
     def parse_accept_header(header)
-      content_types = header.to_s.split(',').map do |content_type_and_weight|
-        content_type_and_weight.strip!
-        case content_type_and_weight
-          when /^([^;]+);\s*q=(\d+\.\d+)$/
-            [[1.0, $2.to_f].min, $1, content_type_and_weight]
-          when /(\S+)/
-            [1.0, $1, content_type_and_weight]
-          else nil
-        end
-      end
-      content_types.compact! # remove nils
-      content_types = content_types.sort_by { |elem| [elem[0], elem[2].size] }
-      content_types.reverse.map { |elem| elem[1] }
+      entries = header.to_s.split(',')
+      entries.map { |e| accept_entry(e) }.sort_by(&:last).map(&:first)
+    end
+
+    def accept_entry(entry)
+      type, *options = entry.delete(' ').split(';')
+      quality = 0 # we sort smallest first
+      options.delete_if { |e| quality = 1 - e[2..-1].to_f if e.start_with? 'q=' }
+      [type, [quality, type.count('*'), 1 - options.size]]
     end
 
     ##
