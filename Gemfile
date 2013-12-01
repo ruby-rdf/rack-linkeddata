@@ -21,6 +21,8 @@ gem 'json-ld',        :git => "git://github.com/ruby-rdf/json-ld.git", :branch =
 gem 'sparql',         :git => "git://github.com/ruby-rdf/sparql.git", :branch => "develop"
 gem 'sparql-client',  :git => "git://github.com/ruby-rdf/sparql-client.git", :branch => "develop"
 
+gem 'nokogiri'
+
 group :development do
   gem "wirble"
 end
