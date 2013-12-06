@@ -23,6 +23,6 @@ gem 'sparql-client',  :git => "git://github.com/ruby-rdf/sparql-client.git", :br
 
 gem 'nokogiri'
 
-group :development do
+group :debug do
   gem "wirble"
 end
