@@ -12,6 +12,18 @@ describe Rack::LinkedData do
     @app ||= Rack::LinkedData::ContentNegotiation.new(target_app, @options)
   end
 
+  describe "#parse_accept_header" do
+    {
+      "application/n-triples" => %w(application/n-triples),
+      "application/n-triples,  application/turtle" => %w(application/n-triples application/turtle),
+      "application/turtle;q=0.5, application/n-triples" => %w(application/n-triples application/turtle),
+    }.each do |accept, content_types|
+      it "returns #{content_types.inspect} given #{accept.inspect}" do
+        expect(app.send(:parse_accept_header, accept)).to eq content_types
+      end
+    end
+  end
+
   context "plain test" do
     it "returns text unchanged" do
       get '/'
@@ -52,27 +64,25 @@ describe Rack::LinkedData do
     
     context "with Accept" do
       {
-        :ntriples => "text/plain",
-        :turtle   => "text/turtle"
-      }.each do |fmt, content_types|
-        context content_types do
+        "application/n-triples"                            => :ntriples,
+        "application/n-triples,  application/turtle"       => :ntriples,
+        "application/turtle;q=0.5, application/n-triples" => :ntriples,
+      }.each do |accepts, fmt|
+        context accepts do
           before(:each) do
             writer = RDF::Writer.for(fmt)
             expect(writer).to receive(:dump).
-              and_return(content_types.split(/,\s+/).first)
-              get '/', {}, {"HTTP_ACCEPT" => content_types}
+              and_return(accepts.split(/,\s+/).first)
+              get '/', {}, {"HTTP_ACCEPT" => accepts}
+          end
+          let(:content_type) {app.send(:parse_accept_header, accepts).first}
+
+          it "sets content type" do
+            last_response.content_type.should == content_type
           end
 
           it "returns serialization" do
-            expect(last_response.body).to eq content_types.split(/,\s+/).first
-          end
-
-          it "sets content type to #{content_types}" do
-            expect(last_response.content_type).to eq content_types
-          end
-          
-          it "sets content length" do
-            expect(last_response.content_length).not_to eq 0
+            expect(last_response.body).to eq accepts.split(/,\s+/).first
           end
         end
       end

@@ -99,7 +99,7 @@ for N-Triples, N-Quads, Turtle, RDF/XML, RDF/JSON, JSON-LD, RDFa, TriG and TriX.
 ## Dependencies
 
 * [Rack](http://rubygems.org/gems/rack) (>= 1.5.2)
-* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 1.0.9)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (>= 1.1)
 
 ## Installation
 
@@ -119,6 +119,21 @@ follows:
 
     % wget http://github.com/ruby-rdf/rack-linkeddata/tarball/master
 
+## Contributing
+This repository uses [Git Flow](https://github.com/nvie/gitflow) to mange development and release activity. All submissions _must_ be on a feature branch based on the _develop_ branch to ease staging and integration.
+
+* Do your best to adhere to the existing coding conventions and idioms.
+* Don't use hard tabs, and don't leave trailing whitespace on any line.
+* Do document every method you add using [YARD][] annotations. Read the
+  [tutorial][YARD-GS] or just look at the existing code for examples.
+* Don't touch the `.gemspec`, `VERSION` or `AUTHORS` files. If you need to
+  change them, do so on your private branch only.
+* Do feel free to add yourself to the `CREDITS` file and the corresponding
+  list in the the `README`. Alphabetical order applies.
+* Do note that in order for us to merge any non-trivial changes (as a rule
+  of thumb, additions larger than about 15 lines of code), we need an
+  explicit [public domain dedication][PDD] on record from you.
+
 ## References
 
 * <http://www.w3.org/DesignIssues/LinkedData.html>
@@ -131,6 +146,7 @@ follows:
 ## Authors
 
 * [Arto Bendiken](http://github.com/bendiken) - <http://ar.to/>
+* [Gregg Kellogg](http://github.com/gkellogg) - <http://greggkellogg.net/>
 
 ## License
 
@@ -141,3 +157,6 @@ see <http://unlicense.org/> or the accompanying {file:UNLICENSE} file.
 [RDF.rb]:         http://ruby-rdf.github.com/rdf/
 [Linked Data]:    http://linkeddata.org/
 [conneg]:         http://en.wikipedia.org/wiki/Content_negotiation
+[YARD]:            http://yardoc.org/
+[YARD-GS]:         http://rubydoc.info/docs/yard/file/docs/GettingStarted.md
+[PDD]:             http://unlicense.org/#unlicensing-contributions
