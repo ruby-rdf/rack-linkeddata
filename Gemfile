@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gemspec :name => ""
+gemspec
 
 gem "linkeddata",     :git => "git://github.com/ruby-rdf/linkeddata.git", :branch => "develop"
 gem "rdf",            :git => "git://github.com/ruby-rdf/rdf.git", :branch => "develop"
