@@ -25,13 +25,13 @@ Gem::Specification.new do |gem|
   gem.test_files         = %w()
   gem.has_rdoc           = false
 
-  gem.required_ruby_version      = '>= 1.9.2'
+  gem.required_ruby_version      = '>= 2.0'
   gem.requirements               = []
-  gem.add_runtime_dependency     'linkeddata', '>= 1.1.0'
-  gem.add_runtime_dependency     'rack',       '>= 1.4'
+  gem.add_runtime_dependency     'linkeddata', '~> 2.0.0.beta'
+  gem.add_runtime_dependency     'rack',       '~> 1.6'
 
-  gem.add_development_dependency 'yard' ,      '>= 0.8'
-  gem.add_development_dependency 'rspec',      '>= 2.14'
-  gem.add_development_dependency 'rack-test',  '>= 0.6'
+  gem.add_development_dependency 'yard' ,      '~> 0.8'
+  gem.add_development_dependency 'rspec',      '~> 3.4'
+  gem.add_development_dependency 'rack-test',  '~> 0.6'
   gem.post_install_message       = nil
 end

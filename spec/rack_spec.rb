@@ -78,7 +78,7 @@ describe Rack::LinkedData do
           let(:content_type) {app.send(:parse_accept_header, accepts).first}
 
           it "sets content type" do
-            last_response.content_type.should == content_type
+            expect(last_response.content_type).to eq content_type
           end
 
           it "returns serialization" do
