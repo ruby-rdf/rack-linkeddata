@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
 
   gem.name               = 'rack-linkeddata'
   gem.homepage           = 'http://ruby-rdf.github.com/rack-linkeddata'
-  gem.license            = 'Public Domain' if gem.respond_to?(:license=)
+  gem.license            = 'Unlicense'
   gem.summary            = 'Linked Data content negotiation for Rack applications.'
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
   gem.rubyforge_project  = 'datagraph'
@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.email              = 'public-rdf-ruby@w3.org'
 
   gem.platform           = Gem::Platform::RUBY
-  gem.files              = %w(AUTHORS CREDITS README UNLICENSE VERSION) + Dir.glob('lib/**/*.rb')
+  gem.files              = %w(AUTHORS CREDITS README.md UNLICENSE VERSION) + Dir.glob('lib/**/*.rb')
   gem.bindir             = %q(bin)
   gem.executables        = %w()
   gem.default_executable = gem.executables.first
