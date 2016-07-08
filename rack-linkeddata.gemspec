@@ -25,7 +25,7 @@ Gem::Specification.new do |gem|
   gem.test_files         = %w()
   gem.has_rdoc           = false
 
-  gem.required_ruby_version      = '>= 2.0'
+  gem.required_ruby_version      = '>= 2.2.2'
   gem.requirements               = []
   gem.add_runtime_dependency     'linkeddata', '~> 2.0'
   gem.add_runtime_dependency     'rack',       '~> 1.6'
