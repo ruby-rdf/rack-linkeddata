@@ -1,7 +1,8 @@
 language: ruby
 script: "bundle exec rspec spec"
 env:
-  - CI=true
+  - CI=true RACK_VERSION=1.6
+  - CI=true RACK_VERSION=2.0
 rvm:
   - 2.2.5
   - 2.3.1
