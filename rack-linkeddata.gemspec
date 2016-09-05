@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency     'rack',       '~> 1.6'
 
   gem.add_development_dependency 'yard' ,      '~> 0.8'
-  gem.add_development_dependency 'rspec',      '~> 3.4'
+  gem.add_development_dependency 'rspec',      '~> 3.5'
   gem.add_development_dependency 'rack-test',  '~> 0.6'
   gem.post_install_message       = nil
 end
