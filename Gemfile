@@ -29,10 +29,16 @@ gem 'nokogiri'
 group :development do
   gem "ebnf",             github: "gkellogg/ebnf",                branch: "develop"
   gem 'sxp',              github: "dryruby/sxp.rb",               branch: "develop"
-  gem "wirble"
 end
 
 platforms :rbx do
   gem 'rubysl', '~> 2.0'
   gem 'rubinius', '~> 2.0'
+end
+
+case ENV['RACK_VERSION']
+when /^1.6/
+  gem 'rack', '~> 1.6'
+when /^2.0/
+  gem 'rack', '~> 2.0'
 end

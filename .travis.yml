@@ -1,13 +1,18 @@
 language: ruby
 script: "bundle exec rspec spec"
 env:
-  - CI=true
+  - CI=true RACK_VERSION=1.6
+  - CI=true RACK_VERSION=2.0
 rvm:
-  - 2.0
-  - 2.1
-  - 2.2.4
-  - 2.3.0
-  - jruby-9.0.4.0
-  - rbx-2
+  - 2.2
+  - 2.3
+  - 2.4
+  - jruby-9
+  - rbx-3
 cache: bundler
 sudo: false
+matrix:
+  allow_failures:
+    - rvm: jruby-9
+    - rvm: rbx-3
+dist: trusty
