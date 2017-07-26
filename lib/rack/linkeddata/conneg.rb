@@ -124,6 +124,8 @@ module Rack; module LinkedData
           RDF::Writer.for(:content_type => (content_type = options[:default]))
         when 'text/*'
           RDF::Writer.for(:content_type => (content_type = 'text/turtle'))
+        when 'application/*'
+          RDF::Writer.for(:content_type => (content_type = 'application/ld+json'))
         when /^([^\/]+)\/\*$/
           nil # TODO: match other subtype wildcards
         else
