@@ -64,9 +64,12 @@ describe Rack::LinkedData do
     
     context "with Accept" do
       {
-        "application/n-triples"                            => :ntriples,
-        "application/n-triples,  application/turtle"       => :ntriples,
+        "application/n-triples"                           => :ntriples,
+        "application/n-triples,  application/turtle"      => :ntriples,
         "application/turtle;q=0.5, application/n-triples" => :ntriples,
+        "application/turtle;q=0.5, application/json"      => :jsonld,
+        "text/*, appication/*;q=0.5"                      => :ttl,
+        "text/turtle;q=0.5, application/xml"              => :rdfxml,
       }.each do |accepts, fmt|
         context accepts do
           before(:each) do
