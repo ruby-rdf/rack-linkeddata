@@ -119,18 +119,7 @@ module Rack; module LinkedData
     # @param  [String, #to_s] content_type
     # @return [Array(Class, String)]
     def find_writer_for_content_type(content_type)
-      writer = case content_type.to_s
-        when '*/*'
-          RDF::Writer.for(:content_type => (content_type = options[:default]))
-        when 'text/*'
-          RDF::Writer.for(:content_type => (content_type = 'text/turtle'))
-        when 'application/*'
-          RDF::Writer.for(:content_type => (content_type = 'application/ld+json'))
-        when /^([^\/]+)\/\*$/
-          nil # TODO: match other subtype wildcards
-        else
-          RDF::Writer.for(:content_type => content_type)
-      end
+      writer = RDF::Writer.for(content_type: content_type) if content_type
       writer ? [writer, content_type] : nil
     end
 
@@ -145,7 +134,8 @@ module Rack; module LinkedData
     # @see    http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
     def parse_accept_header(header)
       entries = header.to_s.split(',')
-      entries.map { |e| accept_entry(e) }.sort_by(&:last).map(&:first)
+      entries = entries.map { |e| accept_entry(e) }.sort_by(&:last).map(&:first)
+      entries.map { |e| find_content_type_for_media_range(e) }
     end
 
     def accept_entry(entry)
@@ -153,6 +143,32 @@ module Rack; module LinkedData
       quality = 0 # we sort smallest first
       options.delete_if { |e| quality = 1 - e[2..-1].to_f if e.start_with? 'q=' }
       [type, [quality, type.count('*'), 1 - options.size]]
+    end
+
+    ##
+    # Returns a content type appropriate for the given `media_range`,
+    # returns `nil` if `media_range` contains a wildcard subtype
+    # that is not mapped.
+    #
+    # @param  [String, #to_s] media_range
+    # @return [String, nil]
+    def find_content_type_for_media_range(media_range)
+      case media_range.to_s
+      when '*/*'
+        options[:default]
+      when 'text/*'
+        'text/turtle'
+      when 'application/*'
+        'application/ld+json'
+      when 'application/json'
+        'application/ld+json'
+      when 'application/xml'
+        'application/rdf+xml'
+      when /^([^\/]+)\/\*$/
+        nil
+      else
+        media_range.to_s
+      end
     end
 
     ##
