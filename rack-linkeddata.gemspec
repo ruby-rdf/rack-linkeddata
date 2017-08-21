@@ -10,7 +10,6 @@ Gem::Specification.new do |gem|
   gem.license            = 'Unlicense'
   gem.summary            = 'Linked Data content negotiation for Rack applications.'
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
-  gem.rubyforge_project  = 'datagraph'
 
   gem.authors            = ['Arto Bendiken']
   gem.email              = 'public-rdf-ruby@w3.org'
