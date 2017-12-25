@@ -1,34 +1,35 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gemspec
 
-gem "linkeddata",         github: "ruby-rdf/linkeddata",          branch: "develop"
-gem "rdf",                github: "ruby-rdf/rdf",                 branch: "develop"
-gem "rdf-spec",           github: "ruby-rdf/rdf-spec",            branch: "develop"
+gem "linkeddata",         git: "https://github.com/ruby-rdf/linkeddata",          branch: "develop"
+gem "rdf",                git: "https://github.com/ruby-rdf/rdf",                 branch: "develop"
+gem "rdf-spec",           git: "https://github.com/ruby-rdf/rdf-spec",            branch: "develop"
 
-gem 'rdf-aggregate-repo', github: "ruby-rdf/rdf-aggregate-repo",  branch: "develop"
-gem 'rdf-isomorphic',     github: "ruby-rdf/rdf-isomorphic",      branch: "develop"
-gem 'rdf-json',           github: "ruby-rdf/rdf-json",            branch: "develop"
-gem 'rdf-microdata',      github: "ruby-rdf/rdf-microdata",       branch: "develop"
-gem 'rdf-n3',             github: "ruby-rdf/rdf-n3",              branch: "develop"
-gem 'rdf-rdfa',           github: "ruby-rdf/rdf-rdfa",            branch: "develop"
-gem 'rdf-reasoner',       github: "ruby-rdf/rdf-reasoner",        branch: "develop"
-gem 'rdf-rdfxml',         github: "ruby-rdf/rdf-rdfxml",          branch: "develop"
-gem 'rdf-tabular',        github: "ruby-rdf/rdf-tabular",         branch: "develop"
-gem 'rdf-trig',           github: "ruby-rdf/rdf-trig",            branch: "develop"
-gem 'rdf-trix',           github: "ruby-rdf/rdf-trix",            branch: "develop"
-gem 'rdf-turtle',         github: "ruby-rdf/rdf-turtle",          branch: "develop"
-gem 'rdf-vocab',          github: "ruby-rdf/rdf-vocab",           branch: "develop"
-gem 'rdf-xsd',            github: "ruby-rdf/rdf-xsd",             branch: "develop"
-gem 'json-ld',            github: "ruby-rdf/json-ld",             branch: "develop"
-gem 'ld-patch',           github: "gkellogg/ld-patch",            branch: "develop"
-gem 'sparql',             github: "ruby-rdf/sparql",              branch: "develop"
-gem 'sparql-client',      github: "ruby-rdf/sparql-client",       branch: "develop"
+gem 'rdf-aggregate-repo', git: "https://github.com/ruby-rdf/rdf-aggregate-repo",  branch: "develop"
+gem 'rdf-isomorphic',     git: "https://github.com/ruby-rdf/rdf-isomorphic",      branch: "develop"
+gem 'rdf-json',           git: "https://github.com/ruby-rdf/rdf-json",            branch: "develop"
+gem 'rdf-microdata',      git: "https://github.com/ruby-rdf/rdf-microdata",       branch: "develop"
+gem 'rdf-n3',             git: "https://github.com/ruby-rdf/rdf-n3",              branch: "develop"
+gem 'rdf-rdfa',           git: "https://github.com/ruby-rdf/rdf-rdfa",            branch: "develop"
+gem 'rdf-reasoner',       git: "https://github.com/ruby-rdf/rdf-reasoner",        branch: "develop"
+gem 'rdf-rdfxml',         git: "https://github.com/ruby-rdf/rdf-rdfxml",          branch: "develop"
+gem 'rdf-tabular',        git: "https://github.com/ruby-rdf/rdf-tabular",         branch: "develop"
+gem 'rdf-trig',           git: "https://github.com/ruby-rdf/rdf-trig",            branch: "develop"
+gem 'rdf-trix',           git: "https://github.com/ruby-rdf/rdf-trix",            branch: "develop"
+gem 'rdf-turtle',         git: "https://github.com/ruby-rdf/rdf-turtle",          branch: "develop"
+gem 'rdf-vocab',          git: "https://github.com/ruby-rdf/rdf-vocab",           branch: "develop"
+gem 'rdf-xsd',            git: "https://github.com/ruby-rdf/rdf-xsd",             branch: "develop"
+gem 'json-ld',            git: "https://github.com/ruby-rdf/json-ld",             branch: "develop"
+gem 'ld-patch',           git: "https://github.com/gkellogg/ld-patch",            branch: "develop"
+gem 'sparql',             git: "https://github.com/ruby-rdf/sparql",              branch: "develop"
+gem 'sparql-client',      git: "https://github.com/ruby-rdf/sparql-client",       branch: "develop"
 gem 'nokogiri'
 
 group :development do
-  gem "ebnf",             github: "gkellogg/ebnf",                branch: "develop"
-  gem 'sxp',              github: "dryruby/sxp.rb",               branch: "develop"
+  gem "byebug",           platforms: :mri
+  gem "ebnf",             git: "https://github.com/gkellogg/ebnf",                branch: "develop"
+  gem 'sxp',              git: "https://github.com/dryruby/sxp.rb",               branch: "develop"
 end
 
 platforms :rbx do

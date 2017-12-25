@@ -15,8 +15,8 @@ describe Rack::LinkedData do
   describe "#parse_accept_header" do
     {
       "application/n-triples" => %w(application/n-triples),
-      "application/n-triples,  application/turtle" => %w(application/n-triples application/turtle),
-      "application/turtle;q=0.5, application/n-triples" => %w(application/n-triples application/turtle),
+      "application/n-triples,  text/turtle" => %w(application/n-triples text/turtle),
+      "text/turtle;q=0.5, application/n-triples" => %w(application/n-triples text/turtle),
     }.each do |accept, content_types|
       it "returns #{content_types.inspect} given #{accept.inspect}" do
         expect(app.send(:parse_accept_header, accept)).to eq content_types
@@ -65,9 +65,9 @@ describe Rack::LinkedData do
     context "with Accept" do
       {
         "application/n-triples"                           => :ntriples,
-        "application/n-triples,  application/turtle"      => :ntriples,
-        "application/turtle;q=0.5, application/n-triples" => :ntriples,
-        "application/turtle;q=0.5, application/json"      => :jsonld,
+        "application/n-triples,  text/turtle"             => :ntriples,
+        "text/turtle;q=0.5, application/n-triples"        => :ntriples,
+        "text/turtle;q=0.5, application/json"             => :jsonld,
         "text/*, appication/*;q=0.5"                      => :ttl,
         "text/turtle;q=0.5, application/xml"              => :rdfxml,
       }.each do |accepts, fmt|
@@ -76,7 +76,7 @@ describe Rack::LinkedData do
             writer = RDF::Writer.for(fmt)
             expect(writer).to receive(:dump).
               and_return(accepts.split(/,\s+/).first)
-              get '/', {}, {"HTTP_ACCEPT" => accepts}
+            get '/', {}, {"HTTP_ACCEPT" => accepts}
           end
           let(:content_type) {app.send(:parse_accept_header, accepts).first}
 
@@ -87,6 +87,15 @@ describe Rack::LinkedData do
           it "returns serialization" do
             expect(last_response.body).to eq accepts.split(/,\s+/).first
           end
+        end
+      end
+
+      context "with writer errors" do
+        it "continues to next writer if first fails" do
+          nq, nt = RDF::Writer.for(:nquads), RDF::Writer.for(:ntriples)
+          expect(nq).to receive(:dump).and_raise(RDF::WriterError)
+          expect(nt).to receive(:dump).and_return("<a> <b> <c> .")
+          get '/', {}, {"HTTP_ACCEPT" => "application/n-quads,  application/n-triples"}
         end
       end
     end

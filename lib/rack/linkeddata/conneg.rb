@@ -69,16 +69,23 @@ module Rack; module LinkedData
     # @param  [RDF::Enumerable]        body
     # @return [Array(Integer, Hash, #each)]
     def serialize(env, status, headers, body)
-      begin
-        writer, content_type = find_writer(env, headers)
-        if writer
-          # FIXME: don't overwrite existing Vary headers
-          headers = headers.merge(VARY).merge('Content-Type' => content_type)
-          [status, headers, [writer.dump(body, nil, @options)]]
-        else
-          not_acceptable
+      result, content_type = nil, nil
+      find_writer(env, headers) do |writer, ct|
+        begin
+          result, content_type = writer.dump(body, nil, @options), ct
+          break
+        rescue RDF::WriterError
+          # Continue to next writer
+          ct
+        rescue
+          ct
         end
-      rescue RDF::WriterError => e
+      end
+
+      if result
+        headers = headers.merge(VARY).merge('Content-Type' => content_type)
+        [status, headers, [result]]
+      else
         not_acceptable
       end
     end
@@ -92,24 +99,32 @@ module Rack; module LinkedData
     #
     # @param  [Hash{String => String}] env
     # @param  [Hash{String => Object}] headers
+    # @yield |writer, content_type|
+    # @yield_param [RDF::Writer] writer
+    # @yield_param [String] content_type
     # @return [Array(Class, String)]
     # @see    http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
     def find_writer(env, headers)
       if @options[:format]
         format = @options[:format]
-        writer = RDF::Writer.for(format.to_sym) unless format.is_a?(RDF::Format)
+        writer = RDF::Writer.for(format.to_sym)
+        yield(writer, writer.format.content_type.first) if writer && block_given?
         return [writer, writer.format.content_type.first] if writer
       elsif env.has_key?('HTTP_ACCEPT')
         content_types = parse_accept_header(env['HTTP_ACCEPT'])
+        writer = nil, content_type = nil
         content_types.each do |content_type|
-          writer, content_type = find_writer_for_content_type(content_type)
-          return [writer, content_type] if writer
+          writer, content_type = find_writer_for_content_type(content_type) do |writer, ct|
+            yield(writer, ct) if block_given?
+          end
         end
-        return nil
+        [writer, content_type] unless writer.nil?
       else
         # HTTP/1.1 §14.1: "If no Accept header field is present, then it is
         # assumed that the client accepts all media types"
-        find_writer_for_content_type(options[:default])
+        writer, content_type = find_writer_for_content_type(options[:default]) do |writer, ct|
+          yield(writer, ct) if block_given?
+        end
       end
     end
 
@@ -117,10 +132,18 @@ module Rack; module LinkedData
     # Returns an `RDF::Writer` class for the given `content_type`.
     #
     # @param  [String, #to_s] content_type
+    # @yield |writer, content_type|
+    # @yield_param [RDF::Writer] writer
+    # @yield_param [String] content_type
     # @return [Array(Class, String)]
     def find_writer_for_content_type(content_type)
-      writer = RDF::Writer.for(content_type: content_type) if content_type
-      writer ? [writer, content_type] : nil
+      formats = RDF::Format.each(content_type: content_type, has_writer: true).to_a.reverse
+      if block_given?
+        formats.each do |format|
+          yield format.writer, (content_type || format.content_type.first)
+        end
+      end
+      [formats.first.writer, formats.first.content_type.first] unless formats.empty?
     end
 
     protected
