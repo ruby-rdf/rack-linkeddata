@@ -1,5 +1,6 @@
 language: ruby
 script: "bundle exec rspec spec"
+before_install: "gem update --system"
 env:
   - CI=true RACK_VERSION=1.6
   - CI=true RACK_VERSION=2.0
@@ -7,6 +8,7 @@ rvm:
   - 2.2
   - 2.3
   - 2.4
+  - 2.5
   - jruby-9
   - rbx-3
 cache: bundler
