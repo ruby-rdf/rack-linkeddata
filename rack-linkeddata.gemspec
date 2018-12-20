@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
   gem.rubyforge_project  = 'datagraph'
 
-  gem.authors            = ['Arto Bendiken']
+  gem.authors            = ['Arto Bendiken', 'Gregg Kellogg']
   gem.email              = 'public-rdf-ruby@w3.org'
 
   gem.platform           = Gem::Platform::RUBY
@@ -21,12 +21,12 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version      = '>= 2.2.2'
   gem.requirements               = []
-  gem.add_runtime_dependency     'linkeddata', '>= 2.2', '< 4.0'
-  gem.add_runtime_dependency     'rdf',        '~> 3.0'
-  gem.add_runtime_dependency     'rack',       '>= 1.6', '< 3.0'
+  gem.add_runtime_dependency     'linkeddata', '~> 3.0'
+  #gem.add_runtime_dependency     'rdf',        '~> 3.0', '>= 3.0.8'
+  gem.add_runtime_dependency     'rack',       '~> 2.0'
 
   gem.add_development_dependency 'yard' ,      '~> 0.9.12'
   gem.add_development_dependency 'rspec',      '~> 3.7'
-  gem.add_development_dependency 'rack-test',  '~> 0.8'
+  gem.add_development_dependency 'rack-test',  '~> 1.1'
   gem.post_install_message       = nil
 end
