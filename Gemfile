@@ -36,10 +36,3 @@ platforms :rbx do
   gem 'rubysl', '~> 2.0'
   gem 'rubinius', '~> 2.0'
 end
-
-case ENV['RACK_VERSION']
-when /^1.6/
-  gem 'rack', '~> 1.6'
-when /^2.0/
-  gem 'rack', '~> 2.0'
-end
