@@ -15,8 +15,10 @@ describe Rack::LinkedData do
   describe "#parse_accept_header" do
     {
       "application/n-triples" => %w(application/n-triples),
-      "application/n-triples,  application/turtle" => %w(application/n-triples application/turtle),
-      "application/turtle;q=0.5, application/n-triples" => %w(application/n-triples application/turtle),
+      "application/n-triples,  text/turtle" => %w(application/n-triples text/turtle),
+      "text/turtle;q=0.5, application/n-triples" => %w(application/n-triples text/turtle),
+      "application/ld+json, application/ld+json;profile=http://www.w3.org/ns/json-ld#compacted" =>
+        %w(application/ld+json;profile=http://www.w3.org/ns/json-ld#compacted application/ld+json),
     }.each do |accept, content_types|
       it "returns #{content_types.inspect} given #{accept.inspect}" do
         expect(app.send(:parse_accept_header, accept)).to eq content_types
@@ -65,20 +67,21 @@ describe Rack::LinkedData do
     context "with Accept" do
       {
         "application/n-triples"                           => :ntriples,
-        "application/n-triples,  application/turtle"      => :ntriples,
-        "application/turtle;q=0.5, application/n-triples" => :ntriples,
-        "application/turtle;q=0.5, application/json"      => :jsonld,
+        "application/n-triples,  text/turtle"             => :ntriples,
+        "text/turtle;q=0.5, application/n-triples"        => :ntriples,
+        "text/turtle;q=0.5, application/json"             => :jsonld,
         "text/*, appication/*;q=0.5"                      => :ttl,
         "text/turtle;q=0.5, application/xml"              => :rdfxml,
+        %(application/ld+json;profile="http://www.w3.org/ns/json-ld#compacted http://example.org/white-listed") => :jsonld
       }.each do |accepts, fmt|
         context accepts do
           before(:each) do
             writer = RDF::Writer.for(fmt)
             expect(writer).to receive(:dump).
               and_return(accepts.split(/,\s+/).first)
-              get '/', {}, {"HTTP_ACCEPT" => accepts}
+            get '/', {}, {"HTTP_ACCEPT" => accepts}
           end
-          let(:content_type) {app.send(:parse_accept_header, accepts).first}
+          let(:content_type) {app.send(:parse_accept_header, accepts).first.split(';').first.strip}
 
           it "sets content type" do
             expect(last_response.content_type).to eq content_type
@@ -87,6 +90,35 @@ describe Rack::LinkedData do
           it "returns serialization" do
             expect(last_response.body).to eq accepts.split(/,\s+/).first
           end
+        end
+      end
+
+      context "with profile accept-param" do
+        let(:header) {%(application/ld+json;profile="http://www.w3.org/ns/json-ld#compacted http://example.org/white-listed")}
+
+        it "calls Writer.accept? with profile" do
+          writer = JSON::LD::Writer
+          expect(writer).to receive(:accept?).with(hash_including(profile: "http://www.w3.org/ns/json-ld#compacted http://example.org/white-listed"))
+          get '/', {}, {"HTTP_ACCEPT" => header}
+        end
+
+        it "passes accept-params to :dump" do
+          writer = JSON::LD::Writer
+          RSpec::Mocks.expect_message(writer, :dump) do |repo, io, options|
+            expect(options).to include(:accept_params)
+            accept_params = options[:accept_params]
+            expect(accept_params).to include(profile: "http://www.w3.org/ns/json-ld#compacted http://example.org/white-listed")
+          end
+          get '/', {}, {"HTTP_ACCEPT" => header}
+        end
+      end
+
+      context "with writer errors" do
+        it "continues to next writer if first fails" do
+          nq, nt = RDF::Writer.for(:nquads), RDF::Writer.for(:ntriples)
+          expect(nq).to receive(:dump).and_raise(RDF::WriterError)
+          expect(nt).to receive(:dump).and_return("<a> <b> <c> .")
+          get '/', {}, {"HTTP_ACCEPT" => "application/n-quads,  application/n-triples"}
         end
       end
     end

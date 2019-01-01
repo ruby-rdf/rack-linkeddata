@@ -11,26 +11,21 @@ Gem::Specification.new do |gem|
   gem.summary            = 'Linked Data content negotiation for Rack applications.'
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
 
-  gem.authors            = ['Arto Bendiken']
+  gem.authors            = ['Arto Bendiken', 'Gregg Kellogg']
   gem.email              = 'public-rdf-ruby@w3.org'
 
   gem.platform           = Gem::Platform::RUBY
   gem.files              = %w(AUTHORS CREDITS README.md UNLICENSE VERSION) + Dir.glob('lib/**/*.rb')
-  gem.bindir             = %q(bin)
-  gem.executables        = %w()
-  gem.default_executable = gem.executables.first
   gem.require_paths      = %w(lib)
-  gem.extensions         = %w()
-  gem.test_files         = %w()
-  gem.has_rdoc           = false
 
   gem.required_ruby_version      = '>= 2.2.2'
   gem.requirements               = []
-  gem.add_runtime_dependency     'linkeddata', '>= 2.2', '< 4.0'
-  gem.add_runtime_dependency     'rack',       '>= 1.6', '< 3.0'
+  gem.add_runtime_dependency     'linkeddata', '~> 3.0'
+  gem.add_runtime_dependency     'rdf',        '~> 3.0', '>= 3.0.8'
+  gem.add_runtime_dependency     'rack',       '~> 2.0'
 
-  gem.add_development_dependency 'yard' ,      '~> 0.8'
-  gem.add_development_dependency 'rspec',      '~> 3.5'
-  gem.add_development_dependency 'rack-test',  '~> 0.6'
+  gem.add_development_dependency 'yard' ,      '~> 0.9.12'
+  gem.add_development_dependency 'rspec',      '~> 3.7'
+  gem.add_development_dependency 'rack-test',  '~> 1.1'
   gem.post_install_message       = nil
 end
