@@ -31,8 +31,3 @@ group :development do
   gem "ebnf",             git: "https://github.com/dryruby/ebnf",                 branch: "develop"
   gem 'sxp',              git: "https://github.com/dryruby/sxp.rb",               branch: "develop"
 end
-
-platforms :rbx do
-  gem 'rubysl', '~> 2.0'
-  gem 'rubinius', '~> 2.0'
-end
