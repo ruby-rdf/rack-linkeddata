@@ -64,6 +64,8 @@ module Rack; module LinkedData
     # Serializes an `RDF::Enumerable` response into a Rack protocol
     # response using HTTP content negotiation rules or a specified Content-Type.
     #
+    # Passes parameters from Accept header, and Link header to writer.
+    #
     # @param  [Hash{String => String}] env
     # @param  [Integer]                status
     # @param  [Hash{String => Object}] headers
@@ -74,7 +76,11 @@ module Rack; module LinkedData
       find_writer(env, headers) do |writer, ct, accept_params = {}|
         begin
           # Passes content_type as writer option to allow parameters to be extracted.
-          result, content_type = writer.dump(body, nil, @options.merge(accept_params: accept_params)), ct.split(';').first
+          writer_options = @options.merge(
+            accept_params: accept_params,
+            link: env['HTTP_LINK']
+          )
+          result, content_type = writer.dump(body, nil, writer_options), ct.split(';').first
           break
         rescue RDF::WriterError
           # Continue to next writer
