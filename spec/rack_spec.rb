@@ -93,6 +93,16 @@ describe Rack::LinkedData do
         end
       end
 
+      it "passes link to :dump" do
+        writer = RDF::NTriples::Writer
+        RSpec::Mocks.expect_message(writer, :dump) do |repo, io, options|
+          expect(options).to include(:link)
+          link = options[:link]
+          expect(link).to eq %(<foo>; rel="self")
+        end
+        get '/', {}, {"HTTP_ACCEPT" => 'application/n-triples', "HTTP_LINK" => %(<foo>; rel="self")}
+      end
+
       context "with profile accept-param" do
         let(:header) {%(application/ld+json;profile="http://www.w3.org/ns/json-ld#compacted http://example.org/white-listed")}
 
