@@ -34,7 +34,7 @@ module Rack; module LinkedData
     #   Other options passed to writer.
     # @param [String] :default (DEFAULT_CONTENT_TYPE) Specific content type
     # @option options [RDF::Format, #to_sym] :format Specific RDF writer format to use
-    def initialize(app, **options)
+    def initialize(app, options)
       @app, @options = app, options
       @options[:default] = (@options[:default] || DEFAULT_CONTENT_TYPE).to_s
     end
