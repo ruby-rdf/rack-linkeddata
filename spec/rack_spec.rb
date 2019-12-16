@@ -9,7 +9,7 @@ describe Rack::LinkedData do
   def app
     target_app = double("Target Rack Application", :call => [200, @headers, @results || "A String"])
 
-    @app ||= Rack::LinkedData::ContentNegotiation.new(target_app, @options)
+    @app ||= Rack::LinkedData::ContentNegotiation.new(target_app, **@options)
   end
 
   describe "#parse_accept_header" do

@@ -99,7 +99,7 @@ for N-Triples, N-Quads, Turtle, RDF/XML, RDF/JSON, JSON-LD, RDFa, TriG and TriX.
 ## Dependencies
 
 * [Rack](http://rubygems.org/gems/rack) (~> 2.0)
-* [Linked Data](http://rubygems.org/gems/linkeddata) (~> 3.0)
+* [Linked Data](http://rubygems.org/gems/linkeddata) (~> 3.1)
 
 ## Installation
 

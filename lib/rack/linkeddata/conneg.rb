@@ -32,9 +32,9 @@ module Rack; module LinkedData
     # @param  [#call]                  app
     # @param  [Hash{Symbol => Object}] options
     #   Other options passed to writer.
-    # @option options [String] :default (DEFAULT_CONTENT_TYPE) Specific content type
+    # @param [String] :default (DEFAULT_CONTENT_TYPE) Specific content type
     # @option options [RDF::Format, #to_sym] :format Specific RDF writer format to use
-    def initialize(app, options = {})
+    def initialize(app, **options)
       @app, @options = app, options
       @options[:default] = (@options[:default] || DEFAULT_CONTENT_TYPE).to_s
     end
@@ -80,7 +80,7 @@ module Rack; module LinkedData
             accept_params: accept_params,
             link: env['HTTP_LINK']
           )
-          result, content_type = writer.dump(body, nil, writer_options), ct.split(';').first
+          result, content_type = writer.dump(body, nil, **writer_options), ct.split(';').first
           break
         rescue RDF::WriterError
           # Continue to next writer
