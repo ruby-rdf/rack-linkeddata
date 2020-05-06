@@ -13,7 +13,7 @@ Sinatra.
 ## Features
 
 * Implements [HTTP content negotiation][conneg] for RDF content types.
-* Supports all [RDF.rb][]-compatible serialization formats.
+* Supports all [RDF.rb][] compatible serialization formats.
 * Compatible with any Rack application and any Rack-based framework.
 
 ## Examples

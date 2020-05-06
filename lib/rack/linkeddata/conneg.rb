@@ -6,7 +6,7 @@ module Rack; module LinkedData
   # format to serialize any result with a body being `RDF::Enumerable`.
   #
   # Override content negotiation by setting the :format option to
-  # {#initialize}.
+  # `#initialize`.
   #
   # Add a :default option to set a content type to use when nothing else
   # is found.

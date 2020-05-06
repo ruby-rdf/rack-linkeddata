@@ -9,7 +9,7 @@ module Rack
     ##
     # Registers all known RDF formats with Rack's MIME types registry.
     #
-    # @param [Boolean]        :overwrite (false)
+    # @param [Boolean]        overwrite (false)
     # @param  [Hash{Symbol => Object}] options
     # @return [void]
     def self.register_mime_types!(overwrite: false, **options)
