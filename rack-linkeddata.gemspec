@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.date               = File.mtime('VERSION').strftime('%Y-%m-%d')
 
   gem.name               = 'rack-linkeddata'
-  gem.homepage           = 'http://ruby-rdf.github.com/rack-linkeddata'
+  gem.homepage           = 'https://github.com/ruby-rdf/rack-linkeddata'
   gem.license            = 'Unlicense'
   gem.summary            = 'Linked Data content negotiation for Rack applications.'
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
@@ -20,11 +20,11 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version      = '>= 2.4'
   gem.requirements               = []
-  gem.add_runtime_dependency     'linkeddata', '~> 3.1'
-  gem.add_runtime_dependency     'rdf',        '~> 3.1'
-  gem.add_runtime_dependency     'rack',       '~> 2.0'
+  gem.add_runtime_dependency     'linkeddata', '~> 3.1', '>= 3.1.2'
+  gem.add_runtime_dependency     'rack-rdf',   '~> 3.1'
+  gem.add_runtime_dependency     'rack',       '~> 2.1'
 
-  gem.add_development_dependency 'yard' ,      '~> 0.9.20'
+  gem.add_development_dependency 'yard' ,      '~> 0.9'
   gem.add_development_dependency 'rspec',      '~> 3.9'
   gem.add_development_dependency 'rack-test',  '~> 1.1'
   gem.post_install_message       = nil

@@ -6,6 +6,7 @@ gem "linkeddata",         git: "https://github.com/ruby-rdf/linkeddata",        
 gem 'json-ld',            git: "https://github.com/ruby-rdf/json-ld",             branch: "develop"
 gem 'json-ld-preloaded',  git: "https://github.com/ruby-rdf/json-ld-preloaded",   branch: "develop"
 gem "ld-patch",           git: "https://github.com/ruby-rdf/ld-patch",            branch: "develop"
+gem "rack-rdf",           git: "https://github.com/ruby-rdf/rack-rdf",            branch: "develop"
 gem "rdf",                git: "https://github.com/ruby-rdf/rdf",                 branch: "develop"
 gem 'rdf-aggregate-repo', git: "https://github.com/ruby-rdf/rdf-aggregate-repo",  branch: "develop"
 gem 'rdf-isomorphic',     git: "https://github.com/ruby-rdf/rdf-isomorphic",      branch: "develop"
