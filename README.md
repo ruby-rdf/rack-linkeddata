@@ -8,7 +8,8 @@ Sinatra.
 * <https://github.com/ruby-rdf/rack-linkeddata>
 
 [![Gem Version](https://badge.fury.io/rb/rack-linkeddata.png)](https://badge.fury.io/rb/rack-linkeddata)
-[![Build Status](https://travis-ci.org/ruby-rdf/rack-linkeddata.png?branch=master)](https://travis-ci.org/ruby-rdf/rack-linkeddata)
+[![Build Status](https://github.com/ruby-rdf/rack-linkeddata/workflows/CI/badge.svg?branch=develop)](https://github.com/ruby-rdf/rack-linkeddata/actions?query=workflow%3ACI)
+[![Gitter chat](https://badges.gitter.im/ruby-rdf/rdf.png)](https://gitter.im/ruby-rdf/rdf)
 
 ## Features
 
