@@ -10,6 +10,13 @@ Gem::Specification.new do |gem|
   gem.license            = 'Unlicense'
   gem.summary            = 'Linked Data content negotiation for Rack applications.'
   gem.description        = 'Rack middleware for Linked Data content negotiation.'
+  gem.metadata           = {
+    "documentation_uri" => "https://ruby-rdf.github.io/rack-linkeddata",
+    "bug_tracker_uri"   => "https://github.com/ruby-rdf/rack-linkeddata/issues",
+    "homepage_uri"      => "https://github.com/ruby-rdf/rack-linkeddata",
+    "mailing_list_uri"  => "https://lists.w3.org/Archives/Public/public-rdf-ruby/",
+    "source_code_uri"   => "https://github.com/ruby-rdf/rack-linkeddata",
+  }
 
   gem.authors            = ['Arto Bendiken', 'Gregg Kellogg']
   gem.email              = 'public-rdf-ruby@w3.org'

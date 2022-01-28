@@ -92,7 +92,7 @@ for N-Triples, N-Quads, Turtle, RDF/XML, RDF/JSON, JSON-LD, RDFa, TriG and TriX.
 
 ##Documentation
 
-<https://rubydoc.info/github/ruby-rdf/rack-linkeddata/>
+<https://ruby-rdf.github.io/rack-linkeddata/>
 
 * {Rack::LinkedData}
   * {Rack::LinkedData::ContentNegotiation}
@@ -157,7 +157,7 @@ This is free and unencumbered public domain software. For more information,
 see <https://unlicense.org/> or the accompanying {file:UNLICENSE} file.
 
 [Rack]:           https://rack.github.com/
-[RDF.rb]:         https://ruby-rdf.github.com/rdf/
+[RDF.rb]:         https://ruby-rdf.github.io/rdf/
 [Linked Data]:    https://linkeddata.org/
 [conneg]:         https://en.wikipedia.org/wiki/Content_negotiation
 [YARD]:            https://yardoc.org/
