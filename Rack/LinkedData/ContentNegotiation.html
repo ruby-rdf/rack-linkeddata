@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Rack::LinkedData::ContentNegotiation
+  
+    &mdash; Rack::LinkedData - Linked Data Content Negotiation for Rack Applications
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Rack::LinkedData::ContentNegotiation";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Rack.html" title="Rack (module)">Rack</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../LinkedData.html" title="Rack::LinkedData (module)">LinkedData</a></span></span>
+     &raquo; 
+    <span class="title">ContentNegotiation</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Rack::LinkedData::ContentNegotiation
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">RDF::ContentNegotiation</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RDF::ContentNegotiation</li>
+          
+            <li class="next">Rack::LinkedData::ContentNegotiation</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/rack/linkeddata/conneg.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Rack middleware for Linked Data content negotiation.</p>
+
+<p>Uses HTTP Content Negotiation to find an appropriate RDF format to serialize any result with a body being <code>RDF::Enumerable</code>.</p>
+
+<p>Override content negotiation by setting the :format option to <code>#initialize</code>.</p>
+
+<p>Add a :default option to set a content type to use when nothing else is found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../../Rack.html" title="Rack (module)">Rack</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../LinkedData.html" title="Rack::LinkedData (module)">LinkedData</a></span></span><span class='op'>::</span><span class='const'>ContentNegotation</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='symbol'>:ttl</span>
+<span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../../Rack.html" title="Rack (module)">Rack</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../LinkedData.html" title="Rack::LinkedData (module)">LinkedData</a></span></span><span class='op'>::</span><span class='const'>ContentNegotiation</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='const'>RDF</span><span class='op'>::</span><span class='const'>NTriples</span><span class='op'>::</span><span class='const'>Format</span>
+<span class='id identifier rubyid_use'>use</span> <span class='const'><span class='object_link'><a href="../../Rack.html" title="Rack (module)">Rack</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../LinkedData.html" title="Rack::LinkedData (module)">LinkedData</a></span></span><span class='op'>::</span><span class='const'>ContentNegotiation</span><span class='comma'>,</span> <span class='symbol'>:default</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/rdf+xml</span><span class='tstring_end'>&#39;</span></span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="http://www4.wiwiss.fu-berlin.de/bizer/pub/LinkedDataTutorial/" target="_parent" title="http://www4.wiwiss.fu-berlin.de/bizer/pub/LinkedDataTutorial/">http://www4.wiwiss.fu-berlin.de/bizer/pub/LinkedDataTutorial/</a></li>
+    
+      <li><a href="https://www.rubydoc.info/github/rack/rack/master/file/SPEC" target="_parent" title="https://www.rubydoc.info/github/rack/rack/master/file/SPEC">https://www.rubydoc.info/github/rack/rack/master/file/SPEC</a></li>
+    
+  </ul>
+
+</div>
+
+
+
+
+
+
+
+  
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Jan 28 19:23:48 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-3.1.0).
+</div>
+
+    </div>
+  </body>
+</html>
