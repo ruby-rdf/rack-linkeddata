@@ -9,11 +9,13 @@ gem "ld-patch",           git: "https://github.com/ruby-rdf/ld-patch",          
 gem "rack-rdf",           git: "https://github.com/ruby-rdf/rack-rdf",            branch: "develop"
 gem "rdf",                git: "https://github.com/ruby-rdf/rdf",                 branch: "develop"
 gem 'rdf-aggregate-repo', git: "https://github.com/ruby-rdf/rdf-aggregate-repo",  branch: "develop"
+gem 'rdf-hamster-repo',   git: 'https://github.com/ruby-rdf/rdf-hamster-repo',    branch: 'develop'
 gem 'rdf-isomorphic',     git: "https://github.com/ruby-rdf/rdf-isomorphic",      branch: "develop"
 gem 'rdf-json',           git: "https://github.com/ruby-rdf/rdf-json",            branch: "develop"
 gem 'rdf-microdata',      git: "https://github.com/ruby-rdf/rdf-microdata",       branch: "develop"
 gem 'rdf-n3',             git: "https://github.com/ruby-rdf/rdf-n3",              branch: "develop"
 gem 'rdf-normalize',      git: "https://github.com/ruby-rdf/rdf-normalize",       branch: "develop"
+gem 'rdf-ordered-repo',   git: 'https://github.com/ruby-rdf/rdf-ordered-repo',    branch: 'develop'
 gem 'rdf-rdfa',           git: "https://github.com/ruby-rdf/rdf-rdfa",            branch: "develop"
 gem 'rdf-rdfxml',         git: "https://github.com/ruby-rdf/rdf-rdfxml",          branch: "develop"
 gem 'rdf-reasoner',       git: "https://github.com/ruby-rdf/rdf-reasoner",        branch: "develop"
@@ -24,6 +26,7 @@ gem 'rdf-trix',           git: "https://github.com/ruby-rdf/rdf-trix",          
 gem 'rdf-turtle',         git: "https://github.com/ruby-rdf/rdf-turtle",          branch: "develop"
 gem 'rdf-vocab',          git: "https://github.com/ruby-rdf/rdf-vocab",           branch: "develop"
 gem 'rdf-xsd',            git: "https://github.com/ruby-rdf/rdf-xsd",             branch: "develop"
+gem 'shacl',              git: "https://github.com/ruby-rdf/shacl",               branch: "develop"
 gem 'shex',               git: "https://github.com/ruby-rdf/shex",                branch: "develop"
 gem 'sparql',             git: "https://github.com/ruby-rdf/sparql",              branch: "develop"
 gem 'sparql-client',      git: "https://github.com/ruby-rdf/sparql-client",       branch: "develop"
