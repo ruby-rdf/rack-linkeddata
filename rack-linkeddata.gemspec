@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.requirements               = []
   gem.add_runtime_dependency     'linkeddata', '~> 3.3'
   gem.add_runtime_dependency     'rack-rdf',   '~> 3.3'
-  gem.add_runtime_dependency     'rack',        '>= 2.2', '< 4'
+  gem.add_runtime_dependency     'rack',       '~> 3.1'
 
   gem.add_development_dependency 'yard' ,      '~> 0.9'
   gem.add_development_dependency 'rspec',      '~> 3.12'
