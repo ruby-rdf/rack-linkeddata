@@ -99,6 +99,7 @@ describe Rack::LinkedData do
           expect(options).to include(:link)
           link = options[:link]
           expect(link).to eq %(<foo>; rel="self")
+          ''
         end
         get '/', {}, {"HTTP_ACCEPT" => 'application/n-triples', "HTTP_LINK" => %(<foo>; rel="self")}
       end
@@ -118,6 +119,7 @@ describe Rack::LinkedData do
             expect(options).to include(:accept_params)
             accept_params = options[:accept_params]
             expect(accept_params).to include(profile: "http://www.w3.org/ns/json-ld#compacted http://example.org/white-listed")
+            ''
           end
           get '/', {}, {"HTTP_ACCEPT" => header}
         end
