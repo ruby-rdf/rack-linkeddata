@@ -28,7 +28,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version      = '>= 3.0'
   gem.requirements               = []
   gem.add_runtime_dependency     'linkeddata', '~> 3.3'
-  gem.add_runtime_dependency     'rack-rdf',   '~> 3.3'
+  gem.add_runtime_dependency     'rack-rdf',   '~> 3.3', '>= 3.3.1'
   gem.add_runtime_dependency     'rack',       '~> 3.1'
 
   gem.add_development_dependency 'yard' ,      '~> 0.9'
